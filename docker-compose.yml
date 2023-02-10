@@ -1,0 +1,18 @@
+version: '3.6'
+services:
+  keepalived:
+    image: jsm98/keep_go_script:latest
+    build: .
+    environment:
+      - KEEPALIVED_INTERFACE=enp0s3
+      - KEEPALIVED_ROUTER_ID=51
+      - KEEPALIVED_PRIORITY=244
+      - KEEPALIVED_VIRTUAL_IPS=192.168.0.245
+      - KEEPALIVED_PASSWORD=jsm
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+      - NET_RAW
+    network_mode: "host"
